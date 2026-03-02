@@ -1,0 +1,132 @@
+.about-section {
+  padding: 100px 0;
+  background: white;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.about-content .section-badge { display: inline-block; }
+
+.about-text {
+  color: #475569;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+.about-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+}
+
+.highlight-icon { font-size: 24px; }
+
+.highlight-item strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.highlight-item span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.about-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.about-card {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  color: white;
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.main-card {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.big-icon { font-size: 48px; margin-bottom: 12px; }
+
+.main-card h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.main-card p {
+  opacity: 0.85;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.about-tags span {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+}
+
+.stat-big { font-size: 28px; font-weight: 800; }
+.stat-label { font-size: 12px; opacity: 0.85; margin-top: 4px; }
+
+.hours-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #059669, #34d399);
+}
+
+.hours-icon { font-size: 32px; }
+.hours-card strong { display: block; font-size: 15px; font-weight: 700; }
+.hours-card span { font-size: 13px; opacity: 0.9; }
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 640px) {
+  .about-highlights { grid-template-columns: 1fr; }
+  .about-visual { grid-template-columns: 1fr; }
+  .main-card { grid-column: 1; }
+}
