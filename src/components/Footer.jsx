@@ -18,18 +18,18 @@ export default function Footer() {
           {/* <div className="footer-logo">
             <div className="logo-icon">ES</div>
             <div>
-              <span className="logo-main">Eurovesion</span>
+              <span className="logo-main">Eurovision</span>
               <span className="logo-sub">Systems</span>
             </div>
           </div> */}
           <div className="footer-logo">
             <img
-              src="/eurovesion_logo.jpg"
-              alt="Eurovesion Systems Logo"
+              src="/eurovision_logo.jpg"
+              alt="Eurovision Systems Logo"
               className="footer-logo-img"
             />
             <div>
-              <span className="logo-main">Eurovesion</span>
+              <span className="logo-main">Eurovision</span>
               <span className="logo-sub">Systems</span>
             </div>
           </div>
@@ -47,14 +47,14 @@ export default function Footer() {
               WhatsApp
             </a>
             <a
-              href="https://www.indiamart.com/eurovesion-services-ranchi/"
+              href="https://www.indiamart.com/eurovision-services-ranchi/"
               target="_blank"
               rel="noreferrer"
             >
               IndiaMart
             </a>
             <a
-              href="https://www.justdial.com/Ranchi/Eurovesion-Service-Opposite-State-Election-Commission-Office-Ratu-Road/0651PX651-X651-220330225626-E9Z2_BZDET"
+              href="https://www.justdial.com/Ranchi/Eurovision-Service-Opposite-State-Election-Commission-Office-Ratu-Road/0651PX651-X651-220330225626-E9Z2_BZDET"
               target="_blank"
               rel="noreferrer"
             >
@@ -110,7 +110,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>© 2024 Eurovesion Systems, Ranchi. All rights reserved.</p>
+        <p>© 2024 Eurovision Systems, Ranchi. All rights reserved.</p>
         <p>
           Designed with ❤️ for the best cash handling experience in Jharkhand.
         </p>

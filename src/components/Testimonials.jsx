@@ -5,7 +5,7 @@ const reviews = [
   {
     name: 'Rajesh Kumar',
     role: 'Bank Manager, SBI Ranchi',
-    text: 'We purchased Maxsell bundle note counting machines for our branch. The quality is excellent and the after-sales support from Eurovesion is outstanding. Highly recommended!',
+    text: 'We purchased Maxsell bundle note counting machines for our branch. The quality is excellent and the after-sales support from Eurovision is outstanding. Highly recommended!',
     stars: 5
   },
   {
@@ -17,7 +17,7 @@ const reviews = [
   {
     name: 'Amit Singh',
     role: 'Petrol Pump Owner',
-    text: "Purchased a Godrej currency counting machine. It's fast, accurate, and the fake note detection is excellent. Eurovesion gave me the best price in Ranchi.",
+    text: "Purchased a Godrej currency counting machine. It's fast, accurate, and the fake note detection is excellent. Eurovision gave me the best price in Ranchi.",
     stars: 5
   },
   {
@@ -60,7 +60,7 @@ export default function Testimonials() {
             <div className="stars-large">⭐⭐⭐⭐⭐</div>
             <span>28 Verified Reviews</span>
           </div>
-          <a href="https://www.justdial.com/Ranchi/Eurovesion-Service-Opposite-State-Election-Commission-Office-Ratu-Road/0651PX651-X651-220330225626-E9Z2_BZDET" target="_blank" rel="noreferrer" className="jd-link">
+          <a href="https://www.justdial.com/Ranchi/Eurovision-Service-Opposite-State-Election-Commission-Office-Ratu-Road/0651PX651-X651-220330225626-E9Z2_BZDET" target="_blank" rel="noreferrer" className="jd-link">
             View on JustDial →
           </a>
         </div>

@@ -40,7 +40,7 @@ export default function WhyUs() {
       <div className="section-container">
         <div className="section-header">
           <div className="section-badge">Why Choose Us</div>
-          <h2 className="section-title">The Eurovesion Advantage</h2>
+          <h2 className="section-title">The Eurovision Advantage</h2>
           <p className="section-sub">Thousands of businesses in Jharkhand trust us for their cash handling needs.</p>
         </div>
 
