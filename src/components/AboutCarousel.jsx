@@ -20,7 +20,7 @@ const AboutCarousel = () => {
   };
 
   return (
-    <div className="about-card main-card">
+    <div className="main-card">
       <div className="carousel">
         <button className="prev" onClick={prevSlide}>❮</button>
 

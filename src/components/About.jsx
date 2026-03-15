@@ -69,8 +69,8 @@ export default function About() {
             <div className="about-card hours-card">
               <span className="hours-icon">🕐</span>
               <div>
-                <strong>Mon – Sat</strong>
-                <span>9:30 AM – 6:00 PM</span>
+                <strong>Mon - Sat</strong>
+                <span>9:30 AM - 8:00 PM</span>
               </div>
             </div>
             <div className="main-card">
