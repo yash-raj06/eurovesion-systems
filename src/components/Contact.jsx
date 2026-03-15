@@ -34,7 +34,7 @@ export default function Contact() {
             <div className="success-icon">✅</div>
             <h3>Enquiry Sent Successfully!</h3>
             <p>Thank you, <strong>{form.name}</strong>! We'll get back to you within 24 hours on {form.phone || form.email}.</p>
-            <p className="success-note">For immediate assistance, call us at <strong>+91 98452 12321</strong></p>
+            <p className="success-note">For immediate assistance, call us at <strong>+91 82107 23030</strong></p>
             <button onClick={() => { setSubmitted(false); setForm({ name:'',email:'',phone:'',product:'',message:'',budget:'' }); }} className="reset-form-btn">
               Send Another Enquiry
             </button>
@@ -69,8 +69,8 @@ export default function Contact() {
               <div className="info-icon">📞</div>
               <div>
                 <h4>Phone / WhatsApp</h4>
-                <a href="tel:+919845212321" className="info-link big">+91 98452 12321</a>
-                <a href="tel:+917942557551" className="info-link">+91 79425 57551</a>
+                <a href="tel:+918210723030" className="info-link big">+91 82107 23030</a>
+                <a href="tel:+916287093331" className="info-link">+91 62870 93331</a>
               </div>
             </div>
 
@@ -94,10 +94,10 @@ export default function Contact() {
             </div>
 
             <div className="quick-actions">
-              <a href="https://wa.me/919845212321?text=Hi%2C%20I%20am%20interested%20in%20your%20machines" target="_blank" rel="noreferrer" className="wa-btn">
+              <a href="https://wa.me/918210723030?text=Hi%2C%20I%20am%20interested%20in%20your%20machines" target="_blank" rel="noreferrer" className="wa-btn">
                 💬 WhatsApp Us Now
               </a>
-              <a href="tel:+919845212321" className="call-btn">📞 Call Now</a>
+              <a href="tel:+918210723030" className="call-btn">📞 Call Now</a>
             </div>
           </div>
 

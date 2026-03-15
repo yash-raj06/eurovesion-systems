@@ -61,7 +61,7 @@ export default function WhyUs() {
           </div>
           <div className="cta-actions">
             <a href="#contact" className="btn-primary">Contact Us Now</a>
-            <a href="tel:+919845212321" className="btn-outline">📞 Call: +91 98452 12321</a>
+            <a href="tel:+918210723030" className="btn-outline">📞 Call: +91 82107 23030</a>
           </div>
         </div>
       </div>

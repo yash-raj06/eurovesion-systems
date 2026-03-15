@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="footer-logo">
             <img
               src="/eurovision_logo.jpg"
-              alt="Eurovision Systems Logo"
+              alt="Eurovision Services Logo"
               className="footer-logo-img"
             />
             <div>
@@ -40,7 +40,7 @@ export default function Footer() {
           </p>
           <div className="footer-socials">
             <a
-              href="https://wa.me/919845212321"
+              href="https://wa.me/918210723030"
               target="_blank"
               rel="noreferrer"
             >
@@ -99,10 +99,10 @@ export default function Footer() {
             Road, Ranchi – 834001
           </p>
           <p>
-            📞 <a href="tel:+919845212321">+91 98452 12321</a>
+            📞 <a href="tel:+918210723030">+91 82107 23030</a>
           </p>
           <p>
-            📞 <a href="tel:+917942557551">+91 79425 57551</a>
+            📞 <a href="tel:+916287093331">+91 62870 93331</a>
           </p>
           <p>🕐 Mon–Sat: 9:30 AM – 6:00 PM</p>
           <p>🏛️ GST: 20BHCPP4020R1ZE</p>
@@ -110,7 +110,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>© 2024 Eurovision Systems, Ranchi. All rights reserved.</p>
+        <p>© 2024 Eurovision Services, Ranchi. All rights reserved.</p>
         <p>
           Designed with ❤️ for the best cash handling experience in Jharkhand.
         </p>

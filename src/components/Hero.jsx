@@ -51,7 +51,7 @@ export default function Hero() {
         <div className="hero-actions">
           <a href="#products" className="btn-primary">Explore Products</a>
           <a href="#contact" className="btn-secondary">
-            <span>📞</span> Call Now: +91 98452 12321
+            <span>📞</span> Call Now: +91 82107 23030
           </a>
         </div>
 

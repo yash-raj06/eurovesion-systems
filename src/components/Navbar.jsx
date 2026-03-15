@@ -19,12 +19,12 @@ export default function Navbar({ scrolled }) {
           {/* <div className="logo-icon">ES</div> */}
           <img
             src="/eurovision_logo.jpg"
-            alt="Eurovision Systems Logo"
+            alt="Eurovision Services Logo"
             className="logo-img"
           />
           <div className="logo-text">
             <span className="logo-main">Eurovision</span>
-            <span className="logo-sub">Service</span>
+            <span className="logo-sub">Services</span>
           </div>
         </a>
 

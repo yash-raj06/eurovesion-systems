@@ -19,7 +19,7 @@ export default function About() {
               Ranchi's Leading Cash Machine Dealer
             </h2>
             <p className="about-text">
-              <strong>Eurovision Systems</strong> (formerly Eurovision Services) is a premier dealer and retailer
+              <strong>Eurovision Services</strong> (formerly Eurovision Services) is a premier dealer and retailer
               of cash handling solutions headquartered in Ranchi, Jharkhand. Founded in 2018 by
               <strong> Avay Kumar Pathak</strong>, we have been serving banks, businesses, retail stores, and
               financial institutions across the region with best-in-class machines.
@@ -52,7 +52,7 @@ export default function About() {
           <div className="about-visual">
             <div className="about-card main-card">
               <div className="big-icon">🏢</div>
-              <h3>Eurovision Systems</h3>
+              <h3>Eurovision Services</h3>
               <p>Your Trusted Cash Machine Partner Since 2018</p>
               <div className="about-tags">
                 <span>Authorised Dealer</span>
