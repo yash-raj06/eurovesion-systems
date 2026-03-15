@@ -24,7 +24,7 @@ export default function Navbar({ scrolled }) {
           />
           <div className="logo-text">
             <span className="logo-main">Eurovision</span>
-            <span className="logo-sub">Systems</span>
+            <span className="logo-sub">Service</span>
           </div>
         </a>
 
