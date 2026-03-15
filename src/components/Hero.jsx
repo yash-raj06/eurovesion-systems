@@ -33,7 +33,7 @@ export default function Hero() {
           </div>
           <div className="stat-divider"></div>
           <div className="hero-stat">
-            <strong>7+</strong>
+            <strong>25+</strong>
             <span>Years Experience</span>
           </div>
           <div className="stat-divider"></div>

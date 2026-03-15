@@ -1,5 +1,6 @@
 import React from 'react';
 import './About.css';
+import AboutCarousel from './AboutCarousel';
 
 export default function About() {
   const highlights = [
@@ -71,6 +72,9 @@ export default function About() {
                 <strong>Mon – Sat</strong>
                 <span>9:30 AM – 6:00 PM</span>
               </div>
+            </div>
+            <div className="main-card">
+              <AboutCarousel />
             </div>
           </div>
         </div>
