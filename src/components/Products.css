@@ -209,12 +209,13 @@
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  z-index: 2;
 }
 
-.product-icon {
+/* .product-icon {
   font-size: 40px;
   margin-bottom: 16px;
-}
+} */
 
 .product-brand {
   font-size: 11px;
@@ -306,6 +307,86 @@
 .no-results-icon { font-size: 64px; margin-bottom: 16px; }
 .no-results h3 { font-size: 22px; color: #0f172a; margin-bottom: 8px; }
 .no-results p { margin-bottom: 20px; }
+.product-carousel {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: #f1f5f9;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.45);
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s;
+  z-index: 2;
+  padding: 0;
+}
+
+.carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-prev { left: 8px; }
+.carousel-next { right: 8px; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 2;
+}
+
+.carousel-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.carousel-dot.active {
+  background: white;
+}
+
+.product-carousel-placeholder {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  background: #f1f5f9;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
 
 @media (max-width: 640px) {
   .filter-bar { flex-direction: column; }

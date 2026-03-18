@@ -17,6 +17,48 @@ function formatPrice(price) {
   if (price >= 1000) return `₹${(price / 1000).toFixed(1)}K`;
   return `₹${price}`;
 }
+function ProductCarousel({ images, productName }) {
+  const [current, setCurrent] = useState(0);
+
+  const prev = (e) => {
+    e.preventDefault();
+    setCurrent(i => (i === 0 ? images.length - 1 : i - 1));
+  };
+
+  const next = (e) => {
+    e.preventDefault();
+    setCurrent(i => (i === images.length - 1 ? 0 : i + 1));
+  };
+
+  if (!images || images.length === 0) {
+    return <div className="product-carousel-placeholder">💵</div>;
+  }
+
+  return (
+    <div className="product-carousel">
+      <img
+        src={`/products/${images[current]}`}
+        alt={`${productName} - ${current + 1}`}
+        className="carousel-img"
+      />
+      {images.length > 1 && (
+        <>
+          <button className="carousel-btn carousel-prev" onClick={prev}>&#8249;</button>
+          <button className="carousel-btn carousel-next" onClick={next}>&#8250;</button>
+          <div className="carousel-dots">
+            {images.map((_, i) => (
+              <span
+                key={i}
+                className={`carousel-dot ${i === current ? 'active' : ''}`}
+                onClick={(e) => { e.preventDefault(); setCurrent(i); }}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default function Products() {
   const [search, setSearch] = useState('');
@@ -116,12 +158,7 @@ export default function Products() {
             {filtered.map(product => (
               <div key={product.id} className="product-card">
                 {product.badge && <span className="product-badge">{product.badge}</span>}
-                <div className="product-icon">
-                  {product.category.includes('Fake') ? '🔍' :
-                   product.category.includes('Coin') ? '🪙' :
-                   product.category.includes('Sorting') ? '📊' :
-                   product.category.includes('Weighing') ? '⚖️' : '💵'}
-                </div>
+                <ProductCarousel images={product.images} productName={product.name} />
                 <div className="product-brand">{product.brand}</div>
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-desc">{product.description}</p>

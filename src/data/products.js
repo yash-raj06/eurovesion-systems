@@ -14,6 +14,7 @@ export const products = [
   {
     id: 1,
     name: "Godrej Crusader Lite Currency Counting Machine",
+    images: ["godrejcrlite1.png", "godrejcrlite2.png", "godrejcrlite3.png"],
     category: "Currency Counting Machine",
     price: 16500,
     badge: "Best Seller",
@@ -24,6 +25,7 @@ export const products = [
   {
     id: 2,
     name: "True Count Value Master Loose Note Machine",
+    images: ["truecountvaluemaster1.png", "truecountvaluemaster1.png"],
     category: "Currency Counting Machine",
     price: 16000,
     badge: "Popular",
@@ -34,6 +36,7 @@ export const products = [
   {
     id: 3,
     name: "Currency Counting Machine with Detection",
+    images: ["ccm1.png", "ccm2.png","ccm3.png"],
     category: "Currency Counting Machine",
     price: 16990,
     badge: null,
