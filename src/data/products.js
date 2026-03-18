@@ -47,7 +47,7 @@ export const products = [
   {
     id: 4,
     name: "Loose Note Counting Machine with Detection",
-    images: ["lncm1.jpg", "lncm2.jpg"],
+    images: ["lncm1.png", "lncm2.png"],
     category: "Currency Counting Machine",
     price: 7990,
     badge: "Budget Pick",
