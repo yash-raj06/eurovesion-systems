@@ -1,33 +1,52 @@
-import React, { useState, useMemo } from 'react';
-import { products, categories } from '../data/products';
-import './Products.css';
+import React, { useState, useMemo } from "react";
+import { products, categories } from "../data/products.js";
+import "./Products.css";
 
 const priceRanges = [
-  { label: 'All Prices', min: 0, max: Infinity },
-  { label: 'Under ₹5,000', min: 0, max: 5000 },
-  { label: '₹5,000 – ₹20,000', min: 5000, max: 20000 },
-  { label: '₹20,000 – ₹50,000', min: 20000, max: 50000 },
-  { label: 'Above ₹50,000', min: 50000, max: Infinity },
+  { label: "All Prices", min: 0, max: Infinity },
+  { label: "Under ₹5,000", min: 0, max: 5000 },
+  { label: "₹5,000 - ₹20,000", min: 5000, max: 20000 },
+  { label: "₹20,000 - ₹50,000", min: 20000, max: 50000 },
+  { label: "Above ₹50,000", min: 50000, max: Infinity },
 ];
 
-const brands = ['All Brands', 'Maxsell', 'Godrej', 'True Count', 'Generic'];
+/* const brands = [
+  "All Brands",
+  "Maxsell",
+  "EUROVISION",
+  "Godrej",
+  "True Count",
+  "KBC",
+  "Lerayon",
+  "Bankomart",
+  "Generic",
+]; */
 
 function formatPrice(price) {
-  if (price >= 100000) return `₹${(price / 100000).toFixed(1)}L`;
+  let minPrice = /* Array.isArray(price) ? */ price[0]; /*  : price */
+  let maxPrice = price[1];
+  if (minPrice >= 100000) minPrice = `₹${(minPrice / 100000).toFixed(1)}L`;
+  if (minPrice >= 1000) minPrice = `₹${(minPrice / 1000).toFixed(1)}K`;
+  if (maxPrice != null) {
+    if (maxPrice >= 100000) maxPrice = `₹${(maxPrice / 100000).toFixed(1)}L`;
+    if (maxPrice >= 1000) maxPrice = `₹${(maxPrice / 1000).toFixed(1)}K`;
+    return `${minPrice} - ${maxPrice}`;
+  }
+  /* if (price >= 100000) return `₹${(price / 100000).toFixed(1)}L`;
   if (price >= 1000) return `₹${(price / 1000).toFixed(1)}K`;
-  return `₹${price}`;
+   */ return `${minPrice}`;
 }
 function ProductCarousel({ images, productName }) {
   const [current, setCurrent] = useState(0);
 
   const prev = (e) => {
     e.preventDefault();
-    setCurrent(i => (i === 0 ? images.length - 1 : i - 1));
+    setCurrent((i) => (i === 0 ? images.length - 1 : i - 1));
   };
 
   const next = (e) => {
     e.preventDefault();
-    setCurrent(i => (i === images.length - 1 ? 0 : i + 1));
+    setCurrent((i) => (i === images.length - 1 ? 0 : i + 1));
   };
 
   if (!images || images.length === 0) {
@@ -43,14 +62,21 @@ function ProductCarousel({ images, productName }) {
       />
       {images.length > 1 && (
         <>
-          <button className="carousel-btn carousel-prev" onClick={prev}>&#8249;</button>
-          <button className="carousel-btn carousel-next" onClick={next}>&#8250;</button>
+          <button className="carousel-btn carousel-prev" onClick={prev}>
+            &#8249;
+          </button>
+          <button className="carousel-btn carousel-next" onClick={next}>
+            &#8250;
+          </button>
           <div className="carousel-dots">
             {images.map((_, i) => (
               <span
                 key={i}
-                className={`carousel-dot ${i === current ? 'active' : ''}`}
-                onClick={(e) => { e.preventDefault(); setCurrent(i); }}
+                className={`carousel-dot ${i === current ? "active" : ""}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setCurrent(i);
+                }}
               />
             ))}
           </div>
@@ -61,32 +87,155 @@ function ProductCarousel({ images, productName }) {
 }
 
 export default function Products() {
-  const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('All');
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("All");
   const [priceRange, setPriceRange] = useState(0);
-  const [brand, setBrand] = useState('All Brands');
-  const [sortBy, setSortBy] = useState('default');
-
+  const [brand, setBrand] = useState(["All Brands"]);
+  const [sortBy, setSortBy] = useState("default");
+  const brands = useMemo(() => {
+    const allBrands = products.flatMap((p) => p.brand);
+    return ["All Brands", ...new Set(allBrands)];
+  }, []);
   const filtered = useMemo(() => {
-    let result = products.filter(p => {
+    let result = products.filter((p) => {
+      console.log("Filtering:", p.name);
       const range = priceRanges[priceRange];
-      const matchSearch = p.name.toLowerCase().includes(search.toLowerCase()) ||
+      /* const matchSearch =
+        p.name.toLowerCase().includes(search.toLowerCase()) ||
         p.category.toLowerCase().includes(search.toLowerCase()) ||
-        p.brand.toLowerCase().includes(search.toLowerCase());
-      const matchCategory = category === 'All' || p.category === category;
-      const matchPrice = p.price >= range.min && p.price < range.max;
-      const matchBrand = brand === 'All Brands' || p.brand === brand;
+        p.brand.toLowerCase().includes(search.toLowerCase()); */
+      const matchSearch =
+        p.name.toLowerCase().includes(search.toLowerCase()) ||
+        p.category.toLowerCase().includes(search.toLowerCase()) ||
+        (Array.isArray(p.brand) ? p.brand : [p.brand]).some((b) =>
+          b.toLowerCase().includes(search.toLowerCase()),
+        );
+
+      /* p.brand.some((b) => b.toLowerCase().includes(search.toLowerCase())); */
+
+      const matchCategory = category === "All" || p.category === category;
+      console.log("Price Range:", matchCategory);
+      let matchPrice = false;
+      if (p.price[1] === null) {
+        matchPrice = p.price[0] >= range.min && p.price[0] < range.max;
+      } else {
+        matchPrice = p.price[0] >= range.min && p.price[1] < range.max;
+      }
+      /* const lowerBrands = brand.map((b) => b.toLowerCase());
+      const matchBrand =
+        lowerBrands.includes("all brands") ||
+        lowerBrands.includes(p.brand.toLowerCase()); */
+      const lowerBrands = brand.map((b) => b.toLowerCase());
+      const matchBrand =
+        lowerBrands.includes("all brands") || (Array.isArray(p.brand) ? p.brand : [p.brand]).some(b => lowerBrands.includes(b.toLowerCase()));
+
+        /* p.brand.some((b) => lowerBrands.includes(b.toLowerCase())); */
+
+      /* const matchBrand = brand === "All Brands" || p.brand === brand; */
       return matchSearch && matchCategory && matchPrice && matchBrand;
     });
+    if (sortBy === "price-asc")
+      result = [...result].sort((a, b) => a.price[0] - b.price[0]);
+    if (sortBy === "price-desc")
+      result = [...result].sort((a, b) => b.price[0] - a.price[0]);
 
-    if (sortBy === 'price-asc') result = [...result].sort((a, b) => a.price - b.price);
-    if (sortBy === 'price-desc') result = [...result].sort((a, b) => b.price - a.price);
-    if (sortBy === 'name') result = [...result].sort((a, b) => a.name.localeCompare(b.name));
+    if (sortBy === "name")
+      result = [...result].sort((a, b) => a.name.localeCompare(b.name));
     return result;
   }, [search, category, priceRange, brand, sortBy]);
 
+  /* const filtered = useMemo(() => {
+    const lowerBrands = brand.map((b) => b.toLowerCase());
+
+    let result = products.filter((p) => {
+      const range = priceRanges[priceRange];
+
+      const matchSearch =
+        p.name.toLowerCase().includes(search.toLowerCase()) ||
+        p.category.toLowerCase().includes(search.toLowerCase()) ||
+        p.brand.toLowerCase().includes(search.toLowerCase());
+
+      const matchCategory = category === "All" || p.category === category;
+
+      let matchPrice = false;
+      if (p.price[1] === null) {
+        matchPrice = p.price[0] >= range.min && p.price[0] < range.max;
+      } else {
+        matchPrice = p.price[0] >= range.min && p.price[1] < range.max;
+      }
+
+      const matchBrand =
+        lowerBrands.includes("all brands") ||
+        lowerBrands.includes(p.brand.toLowerCase());
+
+      return matchSearch && matchCategory && matchPrice && matchBrand;
+    });
+
+    if (sortBy === "price-asc")
+      result = [...result].sort((a, b) => a.price[0] - b.price[0]);
+
+    if (sortBy === "price-desc")
+      result = [...result].sort((a, b) => b.price[0] - a.price[0]);
+
+    if (sortBy === "name")
+      result = [...result].sort((a, b) => a.name.localeCompare(b.name));
+
+    return result;
+  }, [search, category, priceRange, brand, sortBy]);
+ */
+  /* const filtered = useMemo(() => {
+    const lowerBrands = brand.map((b) => b.toLowerCase());
+
+    let result = products.filter((p) => {
+      const range = priceRanges[priceRange];
+
+      const matchSearch =
+        p.name.toLowerCase().includes(search.toLowerCase()) ||
+        p.category.toLowerCase().includes(search.toLowerCase()) ||
+        p.brand.some((b) => b.toLowerCase().includes(search.toLowerCase()));
+
+      const matchCategory = category === "All" || p.category === category;
+
+      let matchPrice = false;
+      if (p.price[1] === null) {
+        matchPrice = p.price[0] >= range.min && p.price[0] < range.max;
+      } else {
+        matchPrice = p.price[0] >= range.min && p.price[1] < range.max;
+      }
+
+      const matchBrand =
+        lowerBrands.includes("all brands") ||
+        p.brand.some((b) => lowerBrands.includes(b.toLowerCase()));
+
+      return matchSearch && matchCategory && matchPrice && matchBrand;
+    });
+
+    if (sortBy === "price-asc")
+      result = [...result].sort((a, b) => a.price[0] - b.price[0]);
+
+    if (sortBy === "price-desc")
+      result = [...result].sort((a, b) => b.price[0] - a.price[0]);
+
+    if (sortBy === "name")
+      result = [...result].sort((a, b) => a.name.localeCompare(b.name));
+
+    return result;
+  }, [search, category, priceRange, brand, sortBy]);
+   */
+
+  /* const resetFilters = () => {
+    setSearch("");
+    setCategory("All");
+    setPriceRange(0);
+    setBrand("All Brands");
+    setSortBy("default");
+  }; */
   const resetFilters = () => {
-    setSearch(''); setCategory('All'); setPriceRange(0); setBrand('All Brands'); setSortBy('default');
+    setSearch("");
+    setCategory("All");
+    setPriceRange(0);
+    setBrand(["All Brands"]);
+    setSortBy("default");
   };
 
   return (
@@ -95,7 +244,10 @@ export default function Products() {
         <div className="section-header">
           <div className="section-badge">Our Products</div>
           <h2 className="section-title">Premium Cash Handling Machines</h2>
-          <p className="section-sub">Explore our wide range of note counting, fake note detection, and coin sorting machines.</p>
+          <p className="section-sub">
+            Explore our wide range of note counting, fake note detection, and
+            coin sorting machines.
+          </p>
         </div>
 
         {/* Search & Filters */}
@@ -106,71 +258,124 @@ export default function Products() {
               type="text"
               placeholder="Search products, brands..."
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
             />
-            {search && <button className="clear-search" onClick={() => setSearch('')}>✕</button>}
+            {search && (
+              <button className="clear-search" onClick={() => setSearch("")}>
+                ✕
+              </button>
+            )}
           </div>
 
           <div className="filter-group">
-            <select value={category} onChange={e => setCategory(e.target.value)}>
-              {categories.map(c => <option key={c}>{c}</option>)}
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              {categories.map((c) => (
+                <option key={c}>{c}</option>
+              ))}
             </select>
 
-            <select value={priceRange} onChange={e => setPriceRange(Number(e.target.value))}>
-              {priceRanges.map((r, i) => <option key={r.label} value={i}>{r.label}</option>)}
+            <select
+              value={priceRange}
+              onChange={(e) => setPriceRange(Number(e.target.value))}
+            >
+              {priceRanges.map((r, i) => (
+                <option key={r.label} value={i}>
+                  {r.label}
+                </option>
+              ))}
             </select>
 
-            <select value={brand} onChange={e => setBrand(e.target.value)}>
-              {brands.map(b => <option key={b}>{b}</option>)}
+            <select
+              value={brand.includes("All Brands") ? "All Brands" : brand[0]}
+              onChange={(e) => setBrand([e.target.value])}
+            >
+              {brands.map((b) => (
+                <option key={b}>{b}</option>
+              ))}
             </select>
 
-            <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
+            {/* <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
               <option value="default">Sort By</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
               <option value="name">Name A-Z</option>
-            </select>
+            </select> */}
           </div>
         </div>
 
         {/* Category Pills */}
         <div className="category-pills">
-          {categories.map(c => (
+          {categories.map((c) => (
             <button
               key={c}
-              className={`pill ${category === c ? 'active' : ''}`}
+              className={`pill ${category === c ? "active" : ""}`}
               onClick={() => setCategory(c)}
-            >{c}</button>
+            >
+              {c}
+            </button>
           ))}
         </div>
 
         {/* Results Info */}
         <div className="results-info">
-          <span>{filtered.length} product{filtered.length !== 1 ? 's' : ''} found</span>
-          {(search || category !== 'All' || priceRange !== 0 || brand !== 'All Brands') && (
-            <button className="reset-btn" onClick={resetFilters}>Clear Filters ✕</button>
+          <span>
+            {filtered.length} product{filtered.length !== 1 ? "s" : ""} found
+          </span>
+          {(search ||
+            category !== "All" ||
+            priceRange !== 0 ||
+            brand !== "All Brands") && (
+            <button className="reset-btn" onClick={resetFilters}>
+              Clear Filters ✕
+            </button>
           )}
         </div>
 
         {/* Product Grid */}
         {filtered.length > 0 ? (
           <div className="products-grid">
-            {filtered.map(product => (
+            {filtered.map((product) => (
               <div key={product.id} className="product-card">
-                {product.badge && <span className="product-badge">{product.badge}</span>}
-                <ProductCarousel images={product.images} productName={product.name} />
-                <div className="product-brand">{product.brand}</div>
+                {product.badge && (
+                  <span className="product-badge">{product.badge}</span>
+                )}
+                <ProductCarousel
+                  images={product.images}
+                  productName={product.name}
+                />
+                <div className="product-brand">
+                  {(Array.isArray(product.brand)
+                    ? product.brand
+                    : [product.brand]
+                  ).map((p) => (
+                    <span key={p} className="brand-tag">
+                      {p}
+                    </span>
+                  ))}
+                </div>
+
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-desc">{product.description}</p>
                 <div className="product-features">
-                  {product.features.map(f => <span key={f} className="feature-tag">{f}</span>)}
+                  {product.features.map((f) => (
+                    <span key={f} className="feature-tag">
+                      {f}
+                    </span>
+                  ))}
                 </div>
                 <div className="product-footer">
                   <div className="product-price">
                     <span className="price-label">Starting at</span>
-                    <span className="price-value">{formatPrice(product.price)}</span>
+                    <span className="price-value">
+                      {formatPrice(product.price)}
+                    </span>
                   </div>
-                  <a href="#contact" className="enquire-btn">Get Quote</a>
+                  <a href="#contact" className="enquire-btn">
+                    Get Quote
+                  </a>
                 </div>
               </div>
             ))}
@@ -180,7 +385,9 @@ export default function Products() {
             <div className="no-results-icon">🔎</div>
             <h3>No products found</h3>
             <p>Try adjusting your search or filters</p>
-            <button className="reset-btn" onClick={resetFilters}>Clear All Filters</button>
+            <button className="reset-btn" onClick={resetFilters}>
+              Clear All Filters
+            </button>
           </div>
         )}
       </div>

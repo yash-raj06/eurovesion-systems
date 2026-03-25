@@ -220,9 +220,9 @@
 .product-brand {
   font-size: 11px;
   font-weight: 700;
-  color: #3b82f6;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+  color: #3b82f6;/* 
+  text-transform: uppercase; */
+  letter-spacing: 1px;
   margin-bottom: 6px;
 }
 
@@ -256,6 +256,13 @@
   font-weight: 500;
   padding: 3px 10px;
   border-radius: 12px;
+}
+
+.brand-tag{
+  background: #eff6ff;
+  font-size: 9px;
+  padding: 2px 4px;
+  margin-right:4px;
 }
 
 .product-footer {
